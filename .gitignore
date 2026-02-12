@@ -8,10 +8,10 @@ db.sqlite3
 media/
 staticfiles/
 
-*.h5
-*.model
-*.pt
-*.pth
+# *.h5
+# *.model
+# *.pt
+# *.pth
 
-ml_model/
-model/
+# ml_model/
+# model/
