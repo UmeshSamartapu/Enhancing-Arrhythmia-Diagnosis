@@ -1,0 +1,13 @@
+body {
+  background: #f2f7ff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.card {
+  border: none;
+  border-radius: 8px;
+}
