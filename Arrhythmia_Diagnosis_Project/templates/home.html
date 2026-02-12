@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="text-center">
+  <h1 class="display-4 text-primary mb-4 animate__animated animate__fadeInDown">Welcome to ArythmiAR</h1>
+  <p class="lead text-secondary animate__animated animate__fadeInUp">
+    An AI-Powered ECG Classification & AR Visualization System.
+  </p>
+  <p class="mt-3 animate__animated animate__fadeInUp animate__delay-1s">
+    Upload your ECG signal to receive instant predictions about potential arrhythmias using a deep learning model. 
+    Admins can monitor all records and help with diagnosis.
+  </p>
+  <img src="{% static 'img/heartbeat.gif' %}" alt="Heartbeat Animation" class="img-fluid mt-4 animate__animated animate__zoomIn" style="max-height: 350px;">
+</div>
+
+{% endblock %}

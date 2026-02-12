@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .register-wrapper {
+    max-width: 450px;
+    margin: auto;
+    margin-top: 80px;
+    padding: 30px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px; /* square-like box */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .register-wrapper h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #198754;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+  }
+
+  .register-wrapper label {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .form-control {
+    font-size: 15px;
+    border-radius: 0;
+  }
+
+  .btn-success {
+    width: 100%;
+    border-radius: 0;
+    font-weight: 500;
+    padding: 8px;
+  }
+
+  .register-wrapper .text-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  .register-wrapper .text-link a {
+    color: #198754;
+    text-decoration: none;
+  }
+
+  .register-wrapper .text-link a:hover {
+    text-decoration: underline;
+  }
+
+  .alert {
+    font-size: 14px;
+    padding: 8px;
+  }
+</style>
+
+<div class="register-wrapper">
+  <h2>Patient Register</h2>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  {% if messages %}
+    {% for msg in messages %}
+      <div class="alert alert-success">{{ msg }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="username">Username</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="email">Email</label>
+      <input type="email" name="email" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-success">Register</button>
+  </form>
+
+  <div class="text-link">
+    Already registered? <a href="{% url 'login' %}">Login here</a>
+  </div>
+</div>
+{% endblock %}

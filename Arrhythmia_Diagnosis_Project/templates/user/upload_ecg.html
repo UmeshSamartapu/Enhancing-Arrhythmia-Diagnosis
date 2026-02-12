@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Upload ECG{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">Upload ECG Image</h2>
+
+    {% if error %}
+        <div class="alert alert-danger text-center">{{ error }}</div>
+    {% endif %}
+
+    {% if prediction %}
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            Swal.fire({
+                title: "{{ prediction|escapejs }}",
+                icon: "{{ icon }}",
+                confirmButtonText: "OK"
+            });
+        </script>
+    {% endif %}
+
+    <div class="card shadow p-4 mx-auto" style="max-width: 500px;">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Select ECG Image</label>
+                <input type="file"
+                       class="form-control"
+                       name="file"
+                       accept=".png,.jpg,.jpeg"
+                       required>
+            </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success px-4">
+                    Predict
+                </button>
+            </div>
+        </form>
+    </div>
+
+    {% if record and record.heart_image %}
+    <div class="mt-5 text-center">
+        <h4 class="mb-3 text-secondary">
+            🫀 3D Heart Visualization
+        </h4>
+
+        <div class="heart-3d-wrapper mx-auto">
+            <img src="{{ record.heart_image.url }}"
+                 alt="3D Heart View"
+                 class="heart-3d-image">
+        </div>
+
+        <p class="text-muted mt-2" style="font-size: 0.9rem;">
+            ⚠️ Visualization generated for educational purposes only.
+        </p>
+    </div>
+    {% endif %}
+</div>
+
+<style>
+.heart-3d-wrapper {
+    perspective: 1000px;
+    width: 420px;
+    margin: auto;
+}
+
+.heart-3d-image {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+    transition: transform 0.6s ease;
+}
+
+.heart-3d-image:hover {
+    transform: rotateY(18deg) rotateX(10deg) scale(1.05);
+}
+</style>
+{% endblock %}

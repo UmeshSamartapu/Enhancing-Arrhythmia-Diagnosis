@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 class="mb-4">ECG Records</h3>
+<table class="table table-bordered table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th>#</th>
+      <th>Filename</th>
+      <th>Result</th>
+      {% if user.is_staff %}
+      <th>Uploaded By</th>
+      {% endif %}
+      <th>Uploaded At</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for record in records %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ record.filename }}</td>
+      <td><span class="badge bg-info">{{ record.result }}</span></td>
+      {% if user.is_staff %}
+      <td>{{ record.uploaded_by.username }}</td>
+      {% endif %}
+      <td>{{ record.uploaded_at }}</td>
+      <td>
+        {% if user.is_staff or record.uploaded_by == user %}
+        <form method="post" action="{% url 'delete_ecg_record' record.id %}" style="display:inline;">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this record?');">Delete</button>
+        </form>
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="6" class="text-center">No records found.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+  .login-wrapper {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 80px;
+    padding: 30px;
+    background: #f8f9fa;
+    border: 1px solid #dee2e6;
+    border-radius: 4px; /* square-ish */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+  }
+
+  .login-wrapper h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #0d6efd;
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 10px;
+  }
+
+  .login-wrapper label {
+    font-weight: 500;
+    font-size: 16px;
+  }
+
+  .form-control {
+    font-size: 15px;
+    border-radius: 0;
+  }
+
+  .btn-primary {
+    width: 100%;
+    border-radius: 0;
+    font-weight: 500;
+    padding: 8px;
+  }
+
+  .login-wrapper .text-link {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+  }
+
+  .login-wrapper .text-link a {
+    color: #0d6efd;
+    text-decoration: none;
+  }
+
+  .login-wrapper .text-link a:hover {
+    text-decoration: underline;
+  }
+
+  .alert {
+    font-size: 14px;
+    padding: 8px;
+  }
+</style>
+
+<div class="login-wrapper">
+  <h2>User Login</h2>
+
+  {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+  {% endif %}
+
+  <form method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label for="username">Username</label>
+      <input type="text" name="username" class="form-control" required>
+    </div>
+    <div class="mb-3">
+      <label for="password">Password</label>
+      <input type="password" name="password" class="form-control" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Login</button>
+  </form>
+
+  <div class="text-link">
+    Don’t have an account? <a href="{% url 'register' %}">Register</a>
+  </div>
+</div>
+{% endblock %}

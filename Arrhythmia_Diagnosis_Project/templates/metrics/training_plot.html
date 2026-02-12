@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container text-center mt-5">
+  <h3 class="text-primary">Model Training Metrics</h3>
+  <p class="text-muted">Training & Validation Accuracy and Loss</p>
+    <a href="{% url 'admin_dashboard' %}" class="btn btn-outline-secondary rounded-pill">← Go Back</a>
+  <img src="{% static 'img/training_plot.png' %}" class="img-fluid border rounded" style="max-height: 500px;">
+</div>
+{% endblock %}
