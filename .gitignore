@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+
+.env
+db.sqlite3
+
+media/
+staticfiles/
+
+*.h5
+*.model
+*.pt
+*.pth
+
+ml_model/
+model/

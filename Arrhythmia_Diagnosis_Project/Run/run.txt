@@ -1,6 +1,0 @@
-use python 3.9.13
-
-run convert to binary ( python ecgapp\convert_to_binary.py )
-run training model (python ecgapp\train_ecg_model.py)
-
-then runserver

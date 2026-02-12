@@ -1,0 +1,35 @@
+Enhancing-Arrhythmia-Diagnosis/
+│
+├── README.md
+├── .gitignore
+├── requirements.txt
+│
+├── docs/
+│   └── ieee_paper.pdf
+│
+├── assets/                  # Screenshots for README / documentation
+│   ├── admin/
+│   ├── user/
+│   └── training/
+│
+├── django_app/              # Django Web Application
+│   ├── manage.py
+│   ├── config/              # (Rename Arrhythmia_Diagnosis_Code → config)
+│   ├── ecgapp/
+│   │   ├── migrations/
+│   │   ├── ml/
+│   │   │   ├── train.py
+│   │   │   └── preprocessing.py
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   └── forms.py
+│   │
+│   ├── static/
+│   ├── templates/
+│   └── media/
+│
+├── models/                  # DO NOT push large files to GitHub
+│   └── README.txt
+│
+└── logs/
+    └── hadoop_logs.csv
